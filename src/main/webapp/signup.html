@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>User Signup Form</title>
+  <style>
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      position: relative;
+    }
+    #background-image {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+    form {
+      position: relative;
+      z-index: 1;
+      background: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: 50px auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <img id="background-image" src="background.jpg" alt="Book I want to read">
+  <form action="SignupServlet" method="post" onsubmit="return validateForm()">
+  	Name: 
+  	<input type="text" name="name" id="name" maxlength="20" pattern=".{1,20}" title="Name can be up to 20 characters." required><br>
+  	Preferred Name:
+  	<input type="text" name="preferredName" id="preferredName" maxlength="20" required><br>
+    User Name: 
+    <input type="text" name="username" id="username" maxlength="10" pattern="[A-Za-z]{1,10}" title="Only a maximum of 10 characters is allowed." required><br>
+
+    User Email: 
+    <input type="text" name="email" required><br>
+
+    Password: 
+    <input type="password" name="password" id="password" minlength="7" maxlength="10" required><br>
+
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById("name").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      
+      console.log("Username:", username);
+      console.log("Email:", email);
+      console.log("Username:", username);
+      console.log("Password:", password);
+      
+      if (name.length > 20) {
+          alert("Name must be 20 characters or fewer.");
+          return false;
+        }
+
+      if (!/^[A-Za-z]{1,10}$/.test(username)) {
+        alert("Username must contain only letters and 10 characters maximum.");
+        return false;
+      }
+
+      if (!/^[A-Za-z0-9$%&*]{7,10}$/.test(password)) {
+        alert("Password must be 7–10 characters long and only include letters, numbers, and $ % & *.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
